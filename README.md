@@ -20,6 +20,14 @@ See `CONTRIBUTING.md` for ways to get started.
 
 Please adhere to this project's `code of conduct`.
 
+### Update the dependency lock state
+
+The project is using the dependency locking, in order to update the persisted state run:
+
+```bash
+  ./gradlew :services:webapi:dependencies --write-locks
+```
+
 ### Conventional commits
 
 This repository is following the conventional commits practice.
