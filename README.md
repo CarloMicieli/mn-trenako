@@ -2,6 +2,7 @@
 
 ![license](https://img.shields.io/github/license/CarloMicieli/mn-trenako)
 ![GitHub last commit](https://img.shields.io/github/last-commit/CarloMicieli/mn-trenako)
+[![Java CI with Gradle (Kotlin)](https://github.com/CarloMicieli/mn-trenako/actions/workflows/ci.yaml/badge.svg)](https://github.com/CarloMicieli/mn-trenako/actions/workflows/ci.yaml)
 
 A sample app with the Micronaut framework and Java 21.
 
