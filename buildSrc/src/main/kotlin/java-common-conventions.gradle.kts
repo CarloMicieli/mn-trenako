@@ -11,12 +11,6 @@ plugins {
 group = "io.github.carlomicieli"
 version = "0.0.0-SNAPSHOT"
 
-configurations {
-    compileOnly {
-        extendsFrom(configurations.annotationProcessor.get())
-    }
-}
-
 repositories {
     mavenCentral()
 }
@@ -40,6 +34,12 @@ tasks {
                 "-Werror"
             )
         )
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom(configurations.annotationProcessor.get())
     }
 }
 

@@ -1,4 +1,3 @@
 plugins {
     id("java-common-conventions")
-    id("application")
 }
