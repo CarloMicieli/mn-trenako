@@ -24,22 +24,24 @@ import io.github.carlomicieli.api.catalog.CatalogApis;
 import io.github.carlomicieli.catalog.railways.Railway;
 import io.github.carlomicieli.catalog.railways.RailwayBuilder;
 import io.github.carlomicieli.catalog.railways.RailwayId;
+import io.github.carlomicieli.catalog.railways.RailwaysList;
+import io.micronaut.core.annotation.Nullable;
 import io.micronaut.http.HttpResponse;
-import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
-import io.micronaut.http.annotation.PathVariable;
-import io.micronaut.http.annotation.Produces;
+import io.micronaut.http.annotation.QueryValue;
+import java.util.List;
 
 @Controller(CatalogApis.API_RAILWAYS)
-public class FindRailwaysByIdController {
-    @Get("/{railwayId}")
-    @Produces(value = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON_PROBLEM})
-    public HttpResponse<Railway> handle(@PathVariable("railwayId") String railwayId) {
+public class FindRailwaysController {
+    @Get
+    public HttpResponse<RailwaysList> handle(
+            @Nullable @QueryValue("offset") Integer offset, @Nullable @QueryValue("limit") Integer limit) {
         Railway railway = RailwayBuilder.builder()
-                .railwayId(new RailwayId(railwayId))
+                .railwayId(new RailwayId("fs"))
                 .name("FS")
                 .build();
-        return HttpResponse.ok(railway);
+        RailwaysList brandsList = new RailwaysList(List.of(railway));
+        return HttpResponse.ok(brandsList);
     }
 }
