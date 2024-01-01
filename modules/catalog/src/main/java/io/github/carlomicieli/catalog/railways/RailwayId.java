@@ -18,9 +18,23 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.railways;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_RAILWAYS = "/api/railways";
+import io.github.carlomicieli.util.Slug;
+import io.github.carlomicieli.util.Strings;
+
+/**
+ * It represents the railway unique identifier (an url encoded string)
+ * @param value the value
+ */
+public record RailwayId(String value) {
+    public RailwayId {
+        Strings.requireNonBlank(value, "railway id cannot be null or blank");
+        value = new Slug(value).value();
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }

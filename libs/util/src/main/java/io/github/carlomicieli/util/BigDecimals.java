@@ -25,13 +25,24 @@ import java.util.Objects;
 
 public final class BigDecimals {
     /**
-     * Checks that the specified BigDecimal value is positive and throws an IllegalArgumentException if it is.
+     * Checks that the specified BigDecimal value is not null and positive and throws an IllegalArgumentException if it is.
      * @param input the value to check
      */
     public static void requirePositive(BigDecimal input) {
         Objects.requireNonNull(input);
         if (input.signum() <= 0) {
             throw new IllegalArgumentException("input must be positive");
+        }
+    }
+
+    /**
+     * Checks that the specified BigDecimal value is positive and throws an IllegalArgumentException if it is.
+     * @param input the value to check
+     * @param message detail message to be used in the event that a IllegalArgumentException is thrown
+     */
+    public static void requireNullOrPositive(BigDecimal input, String message) {
+        if (input != null && input.signum() <= 0) {
+            throw new IllegalArgumentException(message);
         }
     }
 }

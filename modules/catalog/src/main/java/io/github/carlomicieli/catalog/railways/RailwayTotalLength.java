@@ -18,9 +18,23 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.railways;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_RAILWAYS = "/api/railways";
+import io.github.carlomicieli.util.BigDecimals;
+import io.micronaut.serde.annotation.Serdeable;
+import io.soabase.recordbuilder.core.RecordBuilder;
+import java.math.BigDecimal;
+
+/**
+ * It represents the total length of a railway network
+ * @param miles the total railway network in miles
+ * @param kilometers the total railway network in kilometers
+ */
+@RecordBuilder
+@Serdeable
+public record RailwayTotalLength(BigDecimal miles, BigDecimal kilometers) {
+    public RailwayTotalLength {
+        BigDecimals.requireNullOrPositive(miles, "miles cannot be negative or zero");
+        BigDecimals.requireNullOrPositive(kilometers, "kilometers cannot be negative or zero");
+    }
 }

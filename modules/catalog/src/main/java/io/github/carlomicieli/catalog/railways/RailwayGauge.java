@@ -18,9 +18,22 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.railways;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_RAILWAYS = "/api/railways";
+import io.github.carlomicieli.util.BigDecimals;
+import io.micronaut.serde.annotation.Serdeable;
+import io.soabase.recordbuilder.core.RecordBuilder;
+import java.math.BigDecimal;
+
+/**
+ * It represents the railway gauge
+ * @param meters the distance between the two rails in meters
+ * @param trackGauge
+ */
+@RecordBuilder
+@Serdeable
+public record RailwayGauge(BigDecimal meters, TrackGauge trackGauge) {
+    public RailwayGauge {
+        BigDecimals.requireNullOrPositive(meters, "the distance between two rails cannot be zero or negative");
+    }
 }

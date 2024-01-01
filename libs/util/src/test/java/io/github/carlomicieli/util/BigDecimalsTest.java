@@ -27,28 +27,69 @@ import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 
 import java.math.BigDecimal;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("BigDecimals")
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class BigDecimalsTest {
-    @Test
-    void shouldNotThrowWhenInputIsPositive() {
-        assertDoesNotThrow(() -> BigDecimals.requirePositive(BigDecimal.ONE));
+
+    @Nested
+    @DisplayName("requirePositive()")
+    class RequirePositive {
+        @Test
+        void it_should_not_throw_when_input_is_positive() {
+            assertDoesNotThrow(() -> BigDecimals.requirePositive(BigDecimal.ONE));
+        }
+
+        @Test
+        void it_should_throw_an_IllegalArgumentException_when_the_input_is_zero() {
+            IllegalArgumentException ex = assertThrowsExactly(
+                    IllegalArgumentException.class, () -> BigDecimals.requirePositive(BigDecimal.ZERO));
+            assertNotNull(ex);
+            assertEquals("input must be positive", ex.getMessage());
+        }
+
+        @Test
+        void it_should_throw_an_IllegalArgumentException_when_the_input_is_negative() {
+            IllegalArgumentException ex = assertThrowsExactly(
+                    IllegalArgumentException.class, () -> BigDecimals.requirePositive(BigDecimal.valueOf(-42)));
+            assertNotNull(ex);
+            assertEquals("input must be positive", ex.getMessage());
+        }
     }
 
-    @Test
-    void shouldThrowIllegalArgumentExceptionWhenInputIsZero() {
-        IllegalArgumentException ex =
-                assertThrowsExactly(IllegalArgumentException.class, () -> BigDecimals.requirePositive(BigDecimal.ZERO));
-        assertNotNull(ex);
-        assertEquals("input must be positive", ex.getMessage());
-    }
+    @Nested
+    @DisplayName("requireNullOrPositive()")
+    class RequireNullOrPositive {
+        @Test
+        void it_should_not_throw_when_input_is_positive() {
+            assertDoesNotThrow(() -> BigDecimals.requireNullOrPositive(BigDecimal.ONE, "input must be positive"));
+        }
 
-    @Test
-    void shouldThrowIllegalArgumentExceptionWhenInputIsNegative() {
-        IllegalArgumentException ex = assertThrowsExactly(
-                IllegalArgumentException.class, () -> BigDecimals.requirePositive(BigDecimal.valueOf(-42)));
-        assertNotNull(ex);
-        assertEquals("input must be positive", ex.getMessage());
+        @Test
+        void it_should_not_throw_when_input_is_null() {
+            assertDoesNotThrow(() -> BigDecimals.requireNullOrPositive(null, "input must be positive"));
+        }
+
+        @Test
+        void it_should_throw_an_IllegalArgumentException_when_the_input_is_zero() {
+            IllegalArgumentException ex = assertThrowsExactly(
+                    IllegalArgumentException.class,
+                    () -> BigDecimals.requireNullOrPositive(BigDecimal.ZERO, "input must be positive"));
+            assertNotNull(ex);
+            assertEquals("input must be positive", ex.getMessage());
+        }
+
+        @Test
+        void it_should_throw_an_IllegalArgumentException_when_the_input_is_negative() {
+            IllegalArgumentException ex = assertThrowsExactly(
+                    IllegalArgumentException.class,
+                    () -> BigDecimals.requireNullOrPositive(BigDecimal.valueOf(-42), "input must be positive"));
+            assertNotNull(ex);
+            assertEquals("input must be positive", ex.getMessage());
+        }
     }
 }

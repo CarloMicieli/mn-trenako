@@ -18,9 +18,12 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.railways;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_RAILWAYS = "/api/railways";
+/**
+ * It represents the enumeration of the railway activity status
+ */
+public enum RailwayStatus {
+    ACTIVE,
+    INACTIVE;
 }
