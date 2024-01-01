@@ -21,6 +21,8 @@
 package io.github.carlomicieli.api.catalog.brands;
 
 import io.github.carlomicieli.api.catalog.CatalogApis;
+import io.github.carlomicieli.catalog.brands.Brand;
+import io.github.carlomicieli.catalog.brands.BrandBuilder;
 import io.github.carlomicieli.catalog.brands.BrandId;
 import io.github.carlomicieli.catalog.brands.BrandRequest;
 import io.micronaut.core.annotation.NonNull;
@@ -29,17 +31,23 @@ import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Consumes;
 import io.micronaut.http.annotation.Controller;
-import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Produces;
-import java.net.URI;
+import io.micronaut.http.annotation.Put;
 
 @Controller(CatalogApis.API_BRANDS)
-public class CreateNewBrandsController {
-    @Post
+public class UpdateBrandsController {
+    @Put("/{brandId}")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON_PROBLEM)
-    public HttpResponse<Void> handle(@Body @NonNull BrandRequest brandRequest) {
-        var brandId = new BrandId(brandRequest.name());
-        return HttpResponse.created(URI.create("/api/brands/" + brandId));
+    @Produces(value = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON_PROBLEM})
+    public HttpResponse<Brand> handle(
+            @PathVariable("brandId") String brandId, @Body @NonNull BrandRequest brandRequest) {
+        BrandId brandIdValue = new BrandId(brandId);
+        Brand brand = BrandBuilder.builder()
+                .brandId(brandIdValue)
+                .name(brandRequest.name())
+                .kind(brandRequest.kind())
+                .build();
+        return HttpResponse.ok(brand);
     }
 }

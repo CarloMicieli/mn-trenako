@@ -18,25 +18,8 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.catalog.brands;
+package io.github.carlomicieli.api.catalog;
 
-import io.github.carlomicieli.util.Slug;
-import io.github.carlomicieli.util.Strings;
-import io.micronaut.serde.annotation.Serdeable;
-
-/**
- * the brand unique identifier (an url encoded string)
- * @param value the value
- */
-@Serdeable
-public record BrandId(String value) {
-    public BrandId {
-        Strings.requireNonBlank(value, "brand id cannot be null or blank");
-        value = new Slug(value).value();
-    }
-
-    @Override
-    public String toString() {
-        return value;
-    }
+public final class CatalogApis {
+    public static final String API_BRANDS = "/api/brands";
 }

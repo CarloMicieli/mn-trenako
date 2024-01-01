@@ -18,25 +18,23 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.catalog.brands;
+package io.github.carlomicieli.common;
 
-import io.github.carlomicieli.util.Slug;
-import io.github.carlomicieli.util.Strings;
 import io.micronaut.serde.annotation.Serdeable;
+import io.soabase.recordbuilder.core.RecordBuilder;
+import java.time.Instant;
+import java.util.Objects;
 
 /**
- * the brand unique identifier (an url encoded string)
- * @param value the value
+ * It represents a resource metadata
+ * @param version the resource version
+ * @param createdAt the creation timestamp for this resource
+ * @param lastModifiedAt the timestamp when this resource has been modified for the last time
  */
+@RecordBuilder
 @Serdeable
-public record BrandId(String value) {
-    public BrandId {
-        Strings.requireNonBlank(value, "brand id cannot be null or blank");
-        value = new Slug(value).value();
-    }
-
-    @Override
-    public String toString() {
-        return value;
+public record Metadata(int version, Instant createdAt, Instant lastModifiedAt) {
+    public Metadata {
+        Objects.requireNonNull(createdAt);
     }
 }
