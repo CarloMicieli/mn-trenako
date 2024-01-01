@@ -26,6 +26,9 @@ Please adhere to this project's `code of conduct`.
 The project is using the dependency locking, in order to update the persisted state run:
 
 ```bash
+  ./gradlew :libs:util:dependencies --write-locks
+  ./gradlew :modules:common:dependencies --write-locks
+  ./gradlew :modules:catalog:dependencies --write-locks
   ./gradlew :services:webapi:dependencies --write-locks
 ```
 

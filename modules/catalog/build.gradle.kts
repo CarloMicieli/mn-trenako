@@ -1,0 +1,8 @@
+plugins {
+    id("micronaut-library-conventions")
+}
+
+dependencies {
+    implementation(project(":libs:util"))
+    implementation(project(":modules:common"))
+}

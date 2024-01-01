@@ -1,5 +1,5 @@
 /*
- *   Copyright (c) 2023 (C) Carlo Micieli
+ *   Copyright (c) 2024 (C) Carlo Micieli
  *
  *    Licensed to the Apache Software Foundation (ASF) under one
  *    or more contributor license agreements.  See the NOTICE file
@@ -18,15 +18,20 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli;
+package io.github.carlomicieli.util;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.math.BigDecimal;
+import java.util.Objects;
 
-import org.junit.jupiter.api.Test;
-
-class FirstTest {
-    @Test
-    void firstTest() {
-        assertEquals(42, 21 + 21);
+public final class BigDecimals {
+    /**
+     * Checks that the specified BigDecimal value is positive and throws an IllegalArgumentException if it is.
+     * @param input the value to check
+     */
+    public static void requirePositive(BigDecimal input) {
+        Objects.requireNonNull(input);
+        if (input.signum() <= 0) {
+            throw new IllegalArgumentException("input must be positive");
+        }
     }
 }

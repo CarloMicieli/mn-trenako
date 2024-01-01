@@ -1,0 +1,9 @@
+# This is a Gradle generated file for dependency locking.
+# Manual edits can break the build and are not advised.
+# This file is expected to be part of source control.
+com.github.slugify:slugify:3.0.6=compileClasspath
+com.squareup:javapoet:1.12.1=compileClasspath
+io.soabase.record-builder:record-builder-core:38=compileClasspath
+io.soabase.record-builder:record-builder-processor:38=compileClasspath
+io.soabase.record-builder:record-builder:38=compileClasspath
+empty=

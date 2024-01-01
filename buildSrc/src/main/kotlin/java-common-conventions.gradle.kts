@@ -71,6 +71,9 @@ dependencies {
         }
     }
 
+    annotationProcessor("io.soabase.record-builder:record-builder-processor:38")
+    implementation("io.soabase.record-builder:record-builder:38")
+
     testImplementation(platform("org.junit:junit-bom:5.10.1"))
 	testImplementation("org.junit.jupiter:junit-jupiter")
 }
