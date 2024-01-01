@@ -32,7 +32,7 @@ import io.micronaut.http.annotation.Produces;
 public class DeleteBrandsController {
     @Delete("/{brandId}")
     @Produces(MediaType.APPLICATION_JSON_PROBLEM)
-    public HttpResponse<Void> deleteBrand(@PathVariable("brandId") String brandId) {
+    public HttpResponse<Void> handle(@PathVariable("brandId") String brandId) {
         return HttpResponse.noContent();
     }
 }

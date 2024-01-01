@@ -18,7 +18,7 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog.railways;
+package io.github.carlomicieli.api.catalog.scales;
 
 import io.github.carlomicieli.api.catalog.CatalogApis;
 import io.micronaut.http.HttpResponse;
@@ -28,11 +28,11 @@ import io.micronaut.http.annotation.Delete;
 import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Produces;
 
-@Controller(CatalogApis.API_RAILWAYS)
-public class DeleteRailwaysController {
-    @Delete("/{railwayId}")
+@Controller(CatalogApis.API_SCALES)
+public class DeleteScalesController {
+    @Delete("/{scaleId}")
     @Produces(MediaType.APPLICATION_JSON_PROBLEM)
-    public HttpResponse<Void> handle(@PathVariable("railwayId") String railwayId) {
+    public HttpResponse<Void> handle(@PathVariable("scaleId") String scaleId) {
         return HttpResponse.noContent();
     }
 }
