@@ -22,11 +22,13 @@ package io.github.carlomicieli.catalog.railways;
 
 import io.github.carlomicieli.util.Slug;
 import io.github.carlomicieli.util.Strings;
+import io.micronaut.serde.annotation.Serdeable;
 
 /**
  * It represents the railway unique identifier (an url encoded string)
  * @param value the value
  */
+@Serdeable
 public record RailwayId(String value) {
     public RailwayId {
         Strings.requireNonBlank(value, "railway id cannot be null or blank");
