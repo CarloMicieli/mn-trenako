@@ -25,23 +25,25 @@ import io.github.carlomicieli.catalog.brands.Brand;
 import io.github.carlomicieli.catalog.brands.BrandBuilder;
 import io.github.carlomicieli.catalog.brands.BrandId;
 import io.github.carlomicieli.catalog.brands.BrandKind;
+import io.github.carlomicieli.catalog.brands.BrandsList;
+import io.micronaut.core.annotation.Nullable;
 import io.micronaut.http.HttpResponse;
-import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
-import io.micronaut.http.annotation.PathVariable;
-import io.micronaut.http.annotation.Produces;
+import io.micronaut.http.annotation.QueryValue;
+import java.util.List;
 
 @Controller(CatalogApis.API_BRANDS)
-public class FindBrandsByIdController {
-    @Get("/{brandId}")
-    @Produces(value = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON_PROBLEM})
-    public HttpResponse<Brand> handle(@PathVariable("brandId") String brandId) {
+public class FindBrandsController {
+    @Get
+    public HttpResponse<BrandsList> handle(
+            @Nullable @QueryValue("offset") Integer offset, @Nullable @QueryValue("limit") Integer limit) {
         Brand brand = BrandBuilder.builder()
-                .brandId(new BrandId(brandId))
+                .brandId(new BrandId("acme"))
                 .name("ACME")
                 .kind(BrandKind.INDUSTRIAL)
                 .build();
-        return HttpResponse.ok(brand);
+        BrandsList brandsList = new BrandsList(List.of(brand));
+        return HttpResponse.ok(brandsList);
     }
 }
