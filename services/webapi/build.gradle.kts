@@ -6,7 +6,7 @@ plugins {
 }
 
 application {
-    mainClass.set("io.github.carlomicieli.webapi.Application")
+    mainClass.set("io.github.carlomicieli.Application")
 }
 
 dependencies {

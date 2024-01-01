@@ -1,5 +1,5 @@
 /*
- *   Copyright (c) 2023 (C) Carlo Micieli
+ *   Copyright (c) 2024 (C) Carlo Micieli
  *
  *    Licensed to the Apache Software Foundation (ASF) under one
  *    or more contributor license agreements.  See the NOTICE file
@@ -18,15 +18,12 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.webapi;
+package io.github.carlomicieli;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import io.micronaut.runtime.Micronaut;
 
-import org.junit.jupiter.api.Test;
-
-class FirstTest {
-    @Test
-    void firstTest() {
-        assertEquals(42, 42);
+public class Application {
+    public static void main(String[] args) {
+        Micronaut.run(Application.class, args);
     }
 }

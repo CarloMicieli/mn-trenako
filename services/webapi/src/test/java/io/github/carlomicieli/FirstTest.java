@@ -18,12 +18,15 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.webapi;
+package io.github.carlomicieli;
 
-import io.micronaut.runtime.Micronaut;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Application {
-    public static void main(String[] args) {
-        Micronaut.run(Application.class, args);
+import org.junit.jupiter.api.Test;
+
+class FirstTest {
+    @Test
+    void firstTest() {
+        assertEquals(42, 21 + 21);
     }
 }
