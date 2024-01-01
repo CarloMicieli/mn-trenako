@@ -18,10 +18,24 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.scales;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_RAILWAYS = "/api/railways";
-    public static final String API_SCALES = "/api/scales";
+import io.github.carlomicieli.util.BigDecimals;
+import io.micronaut.serde.annotation.Serdeable;
+import io.soabase.recordbuilder.core.RecordBuilder;
+import java.math.BigDecimal;
+
+/**
+ * It represents the track gauge information for a modelling scale
+ * @param millimeters the distance between the rails in millimeters
+ * @param inches the distance between the rails in inches
+ * @param trackGauge
+ */
+@RecordBuilder
+@Serdeable
+public record ScaleGauge(BigDecimal millimeters, BigDecimal inches, TrackGauge trackGauge) {
+    public ScaleGauge {
+        BigDecimals.requireNullOrPositive(millimeters, "millimeters cannot be negative or zero");
+        BigDecimals.requireNullOrPositive(inches, "inches cannot be negative or zero");
+    }
 }

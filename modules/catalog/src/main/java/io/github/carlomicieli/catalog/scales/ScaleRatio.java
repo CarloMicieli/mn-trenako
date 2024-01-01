@@ -18,10 +18,28 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.scales;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_RAILWAYS = "/api/railways";
-    public static final String API_SCALES = "/api/scales";
+import io.github.carlomicieli.util.BigDecimals;
+import io.micronaut.serde.annotation.Serdeable;
+import java.math.BigDecimal;
+
+/**
+ * It represents the ratio between the real world and the model (e.g. 1/87 or 1:87)
+ * @param value the ratio value
+ */
+@Serdeable
+public record ScaleRatio(BigDecimal value) {
+    public ScaleRatio {
+        BigDecimals.requirePositive(value);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("1:%s", value);
+    }
+
+    public static ScaleRatio of(float value) {
+        return ScaleRatios.get(value).orElseGet(() -> new ScaleRatio(BigDecimal.valueOf(value)));
+    }
 }

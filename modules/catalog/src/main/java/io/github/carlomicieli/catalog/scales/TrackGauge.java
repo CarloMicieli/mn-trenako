@@ -18,10 +18,15 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.scales;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_RAILWAYS = "/api/railways";
-    public static final String API_SCALES = "/api/scales";
+/**
+ * It represents the enumeration of the track gauge values
+ */
+public enum TrackGauge {
+    BROAD,
+    MEDIUM,
+    MINIMUM,
+    NARROW,
+    STANDARD;
 }

@@ -18,10 +18,29 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.scales;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_RAILWAYS = "/api/railways";
-    public static final String API_SCALES = "/api/scales";
+import io.github.carlomicieli.common.LocalizedText;
+import io.github.carlomicieli.util.Strings;
+import io.micronaut.serde.annotation.Serdeable;
+import io.soabase.recordbuilder.core.RecordBuilder;
+import java.util.List;
+import java.util.Objects;
+
+/**
+ * It represents a request to create/update rail transport modelling scales
+ * @param name the scale name
+ * @param ratio the ratio between the real world and the model (e.g. 1/87 or 1:87)
+ * @param gauge the scale gauge
+ * @param description
+ * @param standards the list of standards
+ */
+@RecordBuilder
+@Serdeable
+public record ScaleRequest(
+        String name, ScaleRatio ratio, ScaleGauge gauge, LocalizedText description, List<ScaleStandard> standards) {
+    public ScaleRequest {
+        Strings.requireNonBlank(name);
+        Objects.requireNonNull(ratio);
+    }
 }

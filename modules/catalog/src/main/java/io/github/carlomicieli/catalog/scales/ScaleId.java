@@ -18,10 +18,25 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.scales;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_RAILWAYS = "/api/railways";
-    public static final String API_SCALES = "/api/scales";
+import io.github.carlomicieli.util.Slug;
+import io.github.carlomicieli.util.Strings;
+import io.micronaut.serde.annotation.Serdeable;
+
+/**
+ * It represents the scale unique identifier (an url encoded string)
+ * @param value the identifier value
+ */
+@Serdeable
+public record ScaleId(String value) {
+    public ScaleId {
+        Strings.requireNonBlank(value, "scale id cannot be null or blank");
+        value = new Slug(value).value();
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }
