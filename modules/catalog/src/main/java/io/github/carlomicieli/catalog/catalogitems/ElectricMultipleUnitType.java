@@ -18,11 +18,16 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.catalogitems;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_CATALOG_ITEMS = "/api/catalog-items";
-    public static final String API_RAILWAYS = "/api/railways";
-    public static final String API_SCALES = "/api/scales";
+/**
+ * It represents enumeration of the electric multiple unit types
+ */
+public enum ElectricMultipleUnitType {
+    DRIVING_CAR,
+    HIGH_SPEED_TRAIN,
+    MOTOR_CAR,
+    POWER_CAR,
+    TRAILER_CAR,
+    TRAIN_SET;
 }

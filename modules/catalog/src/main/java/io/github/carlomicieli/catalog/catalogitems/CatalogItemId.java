@@ -18,11 +18,23 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.catalogitems;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_CATALOG_ITEMS = "/api/catalog-items";
-    public static final String API_RAILWAYS = "/api/railways";
-    public static final String API_SCALES = "/api/scales";
+import io.github.carlomicieli.util.Slug;
+import java.util.Objects;
+
+public record CatalogItemId(String value) {
+    public static CatalogItemId of(String brandName, ItemNumber itemNumber) {
+        Objects.requireNonNull(brandName);
+        Objects.requireNonNull(itemNumber);
+
+        String value = String.format("%s-%s", brandName, itemNumber.value());
+        Slug slug = new Slug(value);
+        return new CatalogItemId(slug.value());
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }

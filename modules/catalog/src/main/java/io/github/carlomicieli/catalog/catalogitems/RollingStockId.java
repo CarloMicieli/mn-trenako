@@ -18,11 +18,18 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.catalogitems;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_CATALOG_ITEMS = "/api/catalog-items";
-    public static final String API_RAILWAYS = "/api/railways";
-    public static final String API_SCALES = "/api/scales";
+import java.util.Objects;
+import java.util.UUID;
+
+public record RollingStockId(UUID value) {
+    public RollingStockId {
+        Objects.requireNonNull(value, "rolling stock id cannot be null");
+    }
+
+    @Override
+    public String toString() {
+        return value.toString();
+    }
 }

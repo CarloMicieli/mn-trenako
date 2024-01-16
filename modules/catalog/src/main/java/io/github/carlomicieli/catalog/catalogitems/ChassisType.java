@@ -18,11 +18,9 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.catalogitems;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_CATALOG_ITEMS = "/api/catalog-items";
-    public static final String API_RAILWAYS = "/api/railways";
-    public static final String API_SCALES = "/api/scales";
+public enum ChassisType {
+    METAL_DIE_CAST,
+    PLASTIC,
 }

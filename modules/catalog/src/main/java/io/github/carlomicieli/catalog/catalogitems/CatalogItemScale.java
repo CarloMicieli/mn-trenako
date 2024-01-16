@@ -18,11 +18,15 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.catalogitems;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_CATALOG_ITEMS = "/api/catalog-items";
-    public static final String API_RAILWAYS = "/api/railways";
-    public static final String API_SCALES = "/api/scales";
-}
+import io.github.carlomicieli.catalog.scales.ScaleId;
+import io.micronaut.serde.annotation.Serdeable;
+
+/**
+ * the scale information for a catalog item
+ * @param scaleId the scale unique identifier
+ * @param display the scale display text
+ */
+@Serdeable
+public record CatalogItemScale(ScaleId scaleId, String display) {}

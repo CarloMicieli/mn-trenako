@@ -18,11 +18,20 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.catalogitems;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_CATALOG_ITEMS = "/api/catalog-items";
-    public static final String API_RAILWAYS = "/api/railways";
-    public static final String API_SCALES = "/api/scales";
+/**
+ * It represents the enumeration of the rolling stock DCC interfaces
+ */
+public enum DccInterface {
+    MTC_21,
+    NEM_651,
+    NEM_652,
+    NEM_654,
+    NEXT_18,
+    NEXT_18_S,
+    PLUX_12,
+    PLUX_16,
+    PLUX_22,
+    PLUX_8;
 }

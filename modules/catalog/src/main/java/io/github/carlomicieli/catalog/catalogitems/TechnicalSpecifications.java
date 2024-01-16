@@ -18,11 +18,25 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.catalogitems;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_CATALOG_ITEMS = "/api/catalog-items";
-    public static final String API_RAILWAYS = "/api/railways";
-    public static final String API_SCALES = "/api/scales";
-}
+/**
+ * It represents the technical specification for a rolling stock
+ * @param minimumRadius the minimum drivable radius (in millimeters)
+ * @param coupling
+ * @param flywheelFitted
+ * @param bodyShell
+ * @param chassis
+ * @param interiorLights
+ * @param lights
+ * @param sprungBuffers
+ */
+public record TechnicalSpecifications(
+        Float minimumRadius,
+        Coupling coupling,
+        FeatureFlag flywheelFitted,
+        BodyShellType bodyShell,
+        ChassisType chassis,
+        FeatureFlag interiorLights,
+        FeatureFlag lights,
+        FeatureFlag sprungBuffers) {}

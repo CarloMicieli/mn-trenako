@@ -18,11 +18,17 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.catalogitems;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_CATALOG_ITEMS = "/api/catalog-items";
-    public static final String API_RAILWAYS = "/api/railways";
-    public static final String API_SCALES = "/api/scales";
+/**
+ * It represents enumeration of the travel classes for passenger car.
+ * Passenger cars can have multiple service levels (ie, first/second class)
+ */
+public enum ServiceLevel {
+    FIRST_AND_SECOND_CLASS,
+    FIRST_CLASS,
+    FIRST_SECOND_AND_THIRD_CLASS,
+    SECOND_AND_THIRD_CLASS,
+    SECOND_CLASS,
+    THIRD_CLASS;
 }

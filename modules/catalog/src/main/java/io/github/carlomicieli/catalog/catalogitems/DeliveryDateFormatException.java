@@ -18,11 +18,11 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package io.github.carlomicieli.api.catalog;
+package io.github.carlomicieli.catalog.catalogitems;
 
-public final class CatalogApis {
-    public static final String API_BRANDS = "/api/brands";
-    public static final String API_CATALOG_ITEMS = "/api/catalog-items";
-    public static final String API_RAILWAYS = "/api/railways";
-    public static final String API_SCALES = "/api/scales";
+@SuppressWarnings("serial")
+public final class DeliveryDateFormatException extends RuntimeException {
+    public DeliveryDateFormatException(CharSequence invalidInput) {
+        super(String.format("\"%s\" is not a valid delivery date", invalidInput));
+    }
 }
